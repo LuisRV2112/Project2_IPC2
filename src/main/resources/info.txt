@@ -1,0 +1,149 @@
+Content-Type: application/json
+
+Login (POST /auth/login):
+
+json
+{
+    "email": "cliente@ejemplo.com",
+    "password": "cliente123"
+}
+
+Registro (POST /auth/register):
+
+json
+{
+    "email": "cliente@ejemplo.com",
+    "password": "cliente123",
+    "dpi": "1234567890101",
+    "phone": "50212345678",
+    "address": "Ciudad de Guatemala"
+}
+
+POST /services
+Content-Type: application/x-www-form-urlencoded
+
+name=Corte Caballero&description=Corte moderno&imageUrl=/img/corte.jpg&durationMin=45&price=75.00
+
+
+POST /services/5/employees
+Content-Type: application/x-www-form-urlencoded
+
+employeeIds=1&employeeIds=2&employeeIds=3
+
+POST /services/5/catalog
+Content-Type: multipart/form-data
+
+<catalog.pdf>
+
+GET /reports/services?type=most_reserved&startDate=2024-01-01&endDate=2024-12-31
+
+POST /ads
+Content-Type: application/json
+
+{
+    "type": "imagen",
+    "contentUrl": "https://example.com/ad.jpg",
+    "startDate": "2024-03-01",
+    "endDate": "2024-03-07",
+    "category": "cuidado_cabello",
+    "pricePerDay": 50.00
+}
+
+POST /ads/5/payments
+Content-Type: application/json
+
+{
+    "amount": 150.00
+}
+
+GET /ads
+Authorization: Bearer <token-cliente>
+
+
+Solicitud POST /profile:
+
+json
+{
+    "photoUrl": "https://example.com/foto.jpg",
+    "description": "Amante del cuidado capilar",
+    "hobbies": "Cine, música, deportes"
+}
+
+Respuesta GET /profile:
+
+json
+{
+    "profile": {
+        "userId": 123,
+        "photoUrl": "https://example.com/foto.jpg",
+        "description": "Amante del cuidado capilar",
+        "hobbies": "Cine, música, deportes",
+        "createdAt": "2024-03-15T10:00:00",
+        "updatedAt": "2024-03-20T15:30:00"
+    },
+    "interests": ["cuidado_cabello", "uñas_acrilicas"],
+    "suggestedInterests": ["corte_damas", "coloración", "tratamientos_faciales"]
+}
+
+Método	Endpoint	Descripción
+GET	/admin/schedule	Obtener horario completo
+GET	/admin/schedule/1	Obtener horario para Lunes
+PUT	/admin/schedule	Actualizar horario (envío JSON)
+
+Actualizar horario (PUT):
+
+json
+{
+    "dayOfWeek": 1,
+    "openingTime": "08:00:00",
+    "closingTime": "20:00:00",
+    "isActive": true
+}
+
+Respuesta GET /admin/schedule:
+
+json
+[
+    {
+        "dayOfWeek": 1,
+        "openingTime": "08:00:00",
+        "closingTime": "20:00:00",
+        "isActive": true
+    },
+    {
+        "dayOfWeek": 2,
+        "openingTime": "08:00:00",
+        "closingTime": "18:00:00",
+        "isActive": true
+    }
+]
+
+Agendar Cita (Cliente):
+
+http
+POST /client/appointments
+Content-Type: application/json
+
+{
+    "employeeId": 5,
+    "serviceId": 2,
+    "startTime": "2024-03-25T14:30:00"
+}
+Obtener Agenda (Empleado):
+
+http
+GET /employee/appointments?date=2024-03-25
+Actualizar Estado (Empleado):
+
+http
+PUT /employee/appointments/15
+Content-Type: application/json
+
+{
+    "status": "completado",
+    "noShow": false
+}
+Descargar Factura:
+
+http
+GET /invoices/789
