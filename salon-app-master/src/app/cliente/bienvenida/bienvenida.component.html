@@ -1,0 +1,38 @@
+<section class="p-4">
+    <h1 class="text-2xl font-bold mb-4">¡Bienvenido!</h1>
+  
+    <ng-container *ngIf="servicios$ | async as servicios; else cargando">
+      <ul *ngIf="servicios.length > 0; else sinServicios" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <li *ngFor="let servicio of servicios" class="servicio-card bg-white shadow-md rounded-lg p-4">
+          <img [src]="servicio.imageUrl" alt="{{ servicio.name }}" class="w-full h-32 object-cover rounded-t-lg mb-4">
+          <h2 class="text-xl font-semibold">{{ servicio.name }}</h2>
+          <p class="text-gray-600">{{ servicio.description }}</p>
+          <p class="text-lg font-bold mt-2">Duración: {{ servicio.durationMin }} min</p>
+          <p class="text-lg font-bold">Precio: ${{ servicio.price }}</p>
+            
+          <!-- Mostrar pdf si tiene -->
+          <div class="flex gap-2 mt-4">
+            <button 
+              class="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700"
+              (click)="verCatalogo(servicio.catalogoPdfUrl ?? '')">
+              Ver catálogo
+            </button>
+  
+            <button 
+              class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+              (click)="reservar(servicio.id)">
+              Reservar
+            </button>
+          </div>
+        </li>
+      </ul>
+    </ng-container>
+  
+    <ng-template #cargando>
+      <p class="estado-mensaje">Cargando servicios…</p>
+    </ng-template>
+    <ng-template #sinServicios>
+      <p class="estado-mensaje">No hay servicios disponibles en este momento.</p>
+    </ng-template>
+  </section>
+  

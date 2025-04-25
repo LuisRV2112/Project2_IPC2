@@ -1,0 +1,39 @@
+
+/* Estilo personalizado para el contenedor de la sección */
+section {
+    background-color: #f9fafb; /* gris claro */
+    border-radius: 0.5rem;
+  }
+  
+  /* Personalización del contenedor del servicio */
+  .servicio-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .servicio-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Imagen del servicio */
+  .servicio-card img {
+    transition: opacity 0.3s ease;
+  }
+  
+  .servicio-card img:hover {
+    opacity: 0.9;
+  }
+  
+  /* Botón reservar */
+  .servicio-card button {
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Estado cargando o sin servicios */
+  .estado-mensaje {
+    font-size: 1.125rem; /* text-lg */
+    color: #4b5563; /* gray-700 */
+    text-align: center;
+    margin-top: 2rem;
+  }
+  
