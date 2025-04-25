@@ -1,0 +1,113 @@
+/* styles.css */
+.section-container {
+    padding: 1.5rem; /* p-6 */
+  }
+  
+  .section-title {
+    font-size: 1.5rem; /* text-2xl */
+    font-weight: 700; /* font-bold */
+    margin-bottom: 1rem; /* mb-4 */
+  }
+  
+  .btn {
+    color: white;
+    padding: 0.5rem 1rem; /* py-2 px-4 */
+    border-radius: 0.25rem; /* rounded */
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-bottom: 1.5rem; /* mb-6 */
+  }
+  
+  .btn-gray {
+    background-color: #9ca3af; /* bg-gray-400 */
+  }
+  
+  .btn-gray:hover {
+    background-color: #6b7280; /* hover:bg-gray-500 */
+  }
+  
+  .user-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* space-y-4 */
+    margin-bottom: 2.5rem; /* mb-10 */
+  }
+  
+  .form-group {
+    width: 100%;
+  }
+  
+  .form-input {
+    width: 100%; /* w-full */
+    border: 1px solid #e5e7eb; /* border */
+    padding: 0.5rem; /* p-2 */
+    border-radius: 0.25rem; /* rounded */
+  }
+  
+  .error-message {
+    color: #dc2626; /* text-red-600 */
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+  }
+  
+  .btn-green {
+    background-color: #16a34a; /* bg-green-600 */
+  }
+  
+  .btn-green:hover {
+    background-color: #15803d; /* hover:bg-green-700 */
+  }
+  
+  .table-container {
+    overflow-x: auto; /* overflow-x-auto */
+  }
+  
+  .user-table {
+    width: 100%; /* min-w-full */
+    background: white; /* bg-white */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12); /* shadow */
+    border-radius: 0.5rem; /* rounded */
+    border-collapse: collapse;
+  }
+  
+  .table-header {
+    background-color: #f3f4f6; /* bg-gray-100 */
+    padding: 0.75rem 1.5rem; /* py-3 px-6 */
+    text-align: left;
+  }
+  
+  .table-row {
+    border-bottom: 1px solid #e5e7eb; /* border-b */
+  }
+  
+  .table-cell {
+    padding: 0.75rem 1.5rem; /* py-3 px-6 */
+  }
+  
+  .action-btn {
+    color: #dc2626; /* text-red-600 */
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .action-btn:hover {
+    text-decoration: underline; /* hover:underline */
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  /* Estilos para estados deshabilitados */
+  button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+  
+  /* Mejoras de accesibilidad */
+  .form-input:focus {
+    outline: 2px solid #93c5fd;
+    outline-offset: 2px;
+  }

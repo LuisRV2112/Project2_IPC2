@@ -1,0 +1,25 @@
+<section class="section-container">
+    <h1 class="title">Mis Intereses</h1>
+  
+    <div class="form-group">
+      <input
+        type="text"
+        [(ngModel)]="nuevoInteres"
+        placeholder="Nuevo interés"
+        class="input-text"
+      />
+      <button class="button button-blue" (click)="agregarInteres()">Agregar</button>
+    </div>
+  
+    <ul class="intereses-list">
+      <li *ngFor="let interes of intereses" class="interes-item">
+        {{ interes }}
+        <button class="button button-red" (click)="eliminarInteres(interes)">Eliminar</button>
+      </li>
+    </ul>
+  
+    <div *ngIf="intereses.length === 0" class="estado-mensaje">
+      Aún no tienes intereses agregados.
+    </div>
+  </section>
+  

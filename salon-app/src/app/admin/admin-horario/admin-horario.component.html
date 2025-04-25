@@ -1,0 +1,28 @@
+<p>admin-horario works!</p>
+<section class="horario-container">
+  <h1 class="horario-title">Gestión de Horarios</h1>
+
+  <p *ngIf="mensaje" class="mensaje-exito">{{ mensaje }}</p>
+
+  <div class="horario-grid">
+    <div *ngFor="let dia of horarios" class="horario-card">
+      <h2 class="dia-title">{{ diasSemana[dia.dayOfWeek - 1] }}</h2>
+
+      <div class="horario-form">
+        <label class="input-group">
+          Apertura:
+          <input type="time" [(ngModel)]="dia.openingTime" class="time-input">
+        </label>
+        <label class="input-group">
+          Cierre:
+          <input type="time" [(ngModel)]="dia.closingTime" class="time-input">
+        </label>
+        <button 
+          class="guardar-btn"
+          (click)="actualizarHorario(dia)">
+          Guardar Cambios
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

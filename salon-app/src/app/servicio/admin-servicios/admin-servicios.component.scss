@@ -1,0 +1,27 @@
+.servicios-admin-list {
+    display: grid;
+    gap: 1rem;
+  }
+  
+  .servicio-admin-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 8px;
+  }
+  
+  .estado {
+    font-weight: bold;
+    margin-top: 0.5rem;
+  }
+  
+  .estado.activo {
+    color: green;
+  }
+  
+  .estado.inactivo {
+    color: red;
+  }
+  

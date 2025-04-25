@@ -1,0 +1,15 @@
+<div *ngIf="isLoggedIn">
+  <nav class="main-nav">
+    <div class="nav-left">
+      <button class="nav-brand" (click)="navegarHome()">Salón Belleza</button>
+    </div>
+  
+    <button class="logout-btn" (click)="logout()">Salir</button>
+  
+    
+  </nav>
+  <div *ngIf="isUsuario">
+    <app-anuncios-cliente ></app-anuncios-cliente>
+  </div>
+</div>
+

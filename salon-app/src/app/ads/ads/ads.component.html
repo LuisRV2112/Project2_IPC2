@@ -1,0 +1,83 @@
+<section class="ads-management">
+    <h2 class="management-title">Gestión de Anuncios</h2>
+    <div class="filter-bar">
+      <label>
+        Mostrar:
+        <select (change)="cambiarFiltro($event)">
+          <option value="todos">Todos</option>
+          <option value="vigentes">Solo vigentes</option>
+          <option value="caducados">Solo caducados</option>
+        </select>
+      </label>
+    </div>
+  
+    <form [formGroup]="adForm" (ngSubmit)="crearOActualizarAnuncio()" class="ad-form">
+      <div class="form-group">
+        <label class="form-label">
+          Tipo:
+          <select formControlName="type" class="form-select">
+            <option value="text">Texto</option>
+            <option value="image">Imagen con texto</option>
+            <option value="video">Video con texto</option>
+          </select>
+        </label>
+      </div>
+  
+      <div class="form-group">
+        <label class="form-label">
+          URL del contenido:
+          <input formControlName="contentUrl" type="text" class="form-input">
+        </label>
+      </div>
+  
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">
+            Fecha inicio:
+            <input formControlName="startDate" type="date" class="form-input">
+          </label>
+        </div>
+  
+        <div class="form-group">
+          <label class="form-label">
+            Fecha fin:
+            <input formControlName="endDate" type="date" class="form-input">
+          </label>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label class="form-label">
+          Categoría:
+          <input formControlName="category" type="text" class="form-input">
+        </label>
+      </div>
+  
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary" [disabled]="adForm.invalid">
+          {{ editMode ? 'Actualizar' : 'Crear' }} Anuncio
+        </button>
+        <button type="button" *ngIf="editMode" (click)="resetForm()" class="btn btn-secondary">Cancelar</button>
+      </div>
+    </form>
+  
+    <p *ngIf="error" class="error-message">{{ error }}</p>
+
+    <div class="ads-grid">
+      <div *ngFor="let ad of ads" class="ad-card" [class.expired]="estaCaducado(ad)">
+        <div class="ad-content">
+          <p><strong>Tipo:</strong> {{ ad.type }}</p>
+          <p><strong>URL:</strong> <a [href]="ad.contentUrl" target="_blank">{{ ad.contentUrl }}</a></p>
+          <p><strong>Fechas:</strong> {{ ad.startDate | date }} - {{ ad.endDate | date }}</p>
+          <p><strong>Categoría:</strong> {{ ad.category }}</p>
+        </div>
+  
+        <div class="ad-actions">
+          <button (click)="registrarPago(ad.id!)" class="btn btn-action btn-payment">Registrar Pago</button>
+          <button *ngIf="estaCaducado(ad)" (click)="republicar(ad.id!)" class="btn btn-action btn-republish">Republicar</button>
+          <button (click)="prepararEdicion(ad)" class="btn btn-action btn-edit">Editar</button>
+          <button (click)="eliminarAnuncio(ad.id!)" class="btn btn-action btn-delete">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </section>

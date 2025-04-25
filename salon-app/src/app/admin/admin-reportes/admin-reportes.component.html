@@ -1,0 +1,64 @@
+<section class="admin-reports">
+    <h2 class="reports-title">Reportes Administrativos</h2>
+  
+    <div class="report-filters">
+      <div class="filter-group">
+        <label class="filter-label">
+          Fecha Inicio:
+          <input type="date" [(ngModel)]="startDate" class="filter-input">
+        </label>
+      </div>
+  
+      <div class="filter-group">
+        <label class="filter-label">
+          Fecha Fin:
+          <input type="date" [(ngModel)]="endDate" class="filter-input">
+        </label>
+      </div>
+  
+      <div class="filter-group">
+        <label class="filter-label">
+          Filtro (ID opcional):
+          <input type="text" [(ngModel)]="filterId" class="filter-input" placeholder="ID de servicio, empleado o categoría">
+        </label>
+      </div>
+    </div>
+  
+    <div class="report-buttons">
+      <button (click)="descargarReporte('service-earnings', 'ganancias_servicio.pdf', true)" class="report-btn earnings-btn">
+        Ganancias por Servicio
+      </button>
+      
+      <button (click)="descargarReporte('top-ads', 'anuncios_mas_mostrados.pdf')" class="report-btn ads-btn">
+        Anuncios Más Mostrados
+      </button>
+      
+      <button (click)="descargarReporte('top-clients', 'clientes_mas_citas.pdf')" class="report-btn clients-btn">
+         Clientes con Más Citas
+      </button>
+      
+      <button (click)="descargarReporte('least-clients', 'clientes_menos_citas.pdf')" class="report-btn clients-btn">
+         Clientes con Menos Citas
+      </button>
+      
+      <button (click)="descargarReporte('blacklisted-clients', 'clientes_lista_negra.pdf')" class="report-btn blacklist-btn">
+         Clientes en Lista Negra
+      </button>
+      
+      <button (click)="descargarReporte('top-spenders', 'clientes_mas_gastaron.pdf', true)" class="report-btn spending-btn">
+         Clientes que Más Gastaron
+      </button>
+      
+      <button (click)="descargarReporte('least-spenders', 'clientes_menos_gastaron.pdf', true)" class="report-btn spending-btn">
+         Clientes que Menos Gastaron
+      </button>
+      
+      <button (click)="descargarReporte('employee-earnings', 'ganancias_empleado.pdf', true)" class="report-btn earnings-btn">
+         Ganancias por Empleado
+      </button>
+      
+      <button (click)="descargarReporte('top-attended-clients', 'clientes_mas_atendidos.pdf', true)" class="report-btn clients-btn">
+         Clientes Más Atendidos
+      </button>
+    </div>
+  </section>
