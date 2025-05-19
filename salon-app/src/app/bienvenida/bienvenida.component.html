@@ -1,0 +1,141 @@
+<section class="section-container">
+  <h1 class="title">¡Bienvenido!</h1>
+
+  <ng-container *ngIf="isAdmin; else noAdmin">
+    <!-- Vista para Administrador -->
+    <div class="grid-container">
+      <div class="admin-card">
+        <h2 class="card-title">Gestión de Horarios</h2>
+        <p class="card-text">Administra el horario de atención del salón.</p>
+        <button class="button button-blue" (click)="navegar('/admin/horario')">
+          Ir a Horarios
+        </button>
+      </div>
+
+      <div class="admin-card">
+        <h2 class="card-title">Gestión de Usuarios</h2>
+        <p class="card-text">Crear, editar o dar de baja a empleados o encargados.</p>
+        <button class="button button-blue" (click)="navegar('/admin/usuarios')">
+          Ir a Usuarios
+        </button>
+      </div>
+
+      <div class="admin-card">
+        <h2 class="card-title">Reportes disponibles</h2>
+        <p class="card-text">Opciones de Reportes</p>
+        <button class="button button-green" (click)="navegar('/admin/reportes')">
+          Ver Reporte
+        </button>
+      </div>
+
+      <div class="admin-card">
+        <h2 class="card-title">Precio de Anuncios</h2>
+        <p class="card-text">Gestionar</p>
+        <button class="button button-blue" (click)="navegar('/admin/precio-ads')">
+          Ir a Precios
+        </button>
+      </div>
+    </div>
+  </ng-container>
+  
+  <ng-template #noAdmin>
+    <ng-container *ngIf="isEmpleado; else vistaServicio">
+      <!-- Vista para Empleado -->
+      <div class="flex flex-col md:flex-row gap-4 mb-6 justify-center">
+        <button class="button button-blue" (click)="verCitasEmpleado()">
+          Ver Mis Citas
+        </button>
+        <button class="button button-gray" (click)="verPerfil()">
+          Mi Perfil
+        </button>
+      </div>
+    </ng-container>
+    <ng-template #vistaServicio>
+      <ng-container *ngIf="isEncargadoServicios; else vistaMarketing">
+        <!-- Vista para Encargado de Servicios -->
+        <div class="grid-container">
+          <div class="admin-card">
+            <h2 class="card-title">Crear Servicio</h2>
+            <p class="card-text">Publica nuevos servicios para ofrecer a los clientes.</p>
+            <button class="button button-blue" (click)="navegar('/servicio/nuevo')">
+              Crear Servicio
+            </button>
+          </div>
+      
+          <div class="admin-card">
+            <h2 class="card-title">Servicios Más Reservados</h2>
+            <p class="card-text">Descarga el reporte de los servicios más solicitados.</p>
+            <button class="button button-green" (click)="descargarReporte('top-most')">
+              Ver Reporte
+            </button>
+          </div>
+      
+          <div class="admin-card">
+            <h2 class="card-title">Servicios Menos Reservados</h2>
+            <p class="card-text">Consulta qué servicios tienen baja demanda.</p>
+            <button class="button button-yellow" (click)="descargarReporte('top-least')">
+              Ver Reporte
+            </button>
+          </div>
+      
+          <div class="admin-card">
+            <h2 class="card-title">Servicios con Más Ingresos</h2>
+            <p class="card-text">Revisa qué servicios generan mayores ganancias.</p>
+            <button class="button button-blue" (click)="descargarReporte('top-income')">
+              Ver Reporte
+            </button>
+          </div>
+        </div>
+      
+        <!-- Componente para administrar servicios -->
+        <app-admin-servicios></app-admin-servicios>
+      </ng-container>
+
+      <ng-template #vistaMarketing>
+        <ng-container *ngIf="isMarketing; else vistaUsuario">
+          <app-ads></app-ads>
+        </ng-container>
+        <ng-template #vistaUsuario>
+          <!-- Vista para Usuario normal -->
+          <div class="flex flex-col md:flex-row gap-4 mb-6 justify-center">
+            <button class="button button-blue" (click)="verIntereses()">
+              Gestionar Intereses
+            </button>
+            <button class="button button-green" (click)="verCitas()">
+              Ver Mis Citas
+            </button>
+          </div>
+    
+          <ng-container *ngIf="servicios$ | async as servicios; else cargando">
+            <ul *ngIf="servicios.length > 0; else sinServicios" class="grid-container servicios-grid">
+              <li *ngFor="let servicio of servicios" class="servicio-card">
+                <img [src]="servicio.imageUrl" alt="{{ servicio.name }}" class="servicio-image">
+                <h2 class="card-title">{{ servicio.name }}</h2>
+                <p class="card-text">{{ servicio.description }}</p>
+                <p class="precio-duracion">Duración: {{ servicio.durationMin }} min</p>
+                <p class="precio-duracion">Precio: ${{ servicio.price }}</p>
+                <div class="flex-container">
+                  <button class="button button-green" (click)="verCatalogo(servicio.id ??  0)">
+                    Ver catálogo
+                  </button>
+                  <button class="button button-blue" (click)="reservar(servicio.id)">
+                    Reservar
+                  </button>
+                </div>
+              </li>
+            </ul>
+          </ng-container>
+    
+          <ng-template #cargando>
+            <p class="estado-mensaje">Cargando servicios…</p>
+          </ng-template>
+          <ng-template #sinServicios>
+            <p class="estado-mensaje">No hay servicios disponibles en este momento.</p>
+          </ng-template>
+        </ng-template>
+      </ng-template>
+    </ng-template>
+
+
+  </ng-template>
+</section>

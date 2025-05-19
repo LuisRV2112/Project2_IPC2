@@ -1,0 +1,88 @@
+/* Estilos CSS */
+.horario-container {
+    padding: 1rem; /* p-4 */
+  }
+  
+  .horario-title {
+    font-size: 1.5rem; /* text-2xl */
+    font-weight: 700; /* font-bold */
+    margin-bottom: 1.5rem; /* mb-6 */
+  }
+  
+  .mensaje-exito {
+    margin-bottom: 1rem; /* mb-4 */
+    color: #16a34a; /* text-green-600 */
+  }
+  
+  .horario-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* grid-cols-1 */
+    gap: 1rem; /* gap-4 */
+  }
+  
+  @media (min-width: 768px) { /* md: */
+    .horario-grid {
+      grid-template-columns: repeat(2, 1fr); /* md:grid-cols-2 */
+    }
+  }
+  
+  .horario-card {
+    background: white; /* bg-white */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); /* shadow-md */
+    border-radius: 0.5rem; /* rounded-lg */
+    padding: 1rem; /* p-4 */
+  }
+  
+  .dia-title {
+    font-size: 1.25rem; /* text-xl */
+    font-weight: 600; /* font-semibold */
+    margin-bottom: 0.5rem; /* mb-2 */
+  }
+  
+  .horario-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem; /* gap-2 */
+  }
+  
+  .input-group {
+    display: block; /* block */
+    width: 100%;
+  }
+  
+  .time-input {
+    width: 100%; /* w-full */
+    border: 1px solid #e5e7eb; /* border */
+    border-radius: 0.25rem; /* rounded */
+    padding: 0.25rem 0.5rem; /* px-2 py-1 */
+    margin-top: 0.25rem;
+  }
+  
+  .guardar-btn {
+    background-color: #3b82f6; /* bg-blue-500 */
+    color: white; /* text-white */
+    padding: 0.5rem 1rem; /* py-2 px-4 */
+    border-radius: 0.25rem; /* rounded */
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-top: 0.5rem; /* mt-2 */
+  }
+  
+  .guardar-btn:hover {
+    background-color: #2563eb; /* hover:bg-blue-600 */
+  }
+  
+  /* Estilos adicionales para mejor usabilidad */
+  .time-input:focus {
+    outline: 2px solid #93c5fd;
+    outline-offset: 2px;
+  }
+  
+  .horario-card {
+    transition: transform 0.2s ease;
+  }
+  
+  .horario-card:hover {
+    transform: translateY(-2px);
+  }

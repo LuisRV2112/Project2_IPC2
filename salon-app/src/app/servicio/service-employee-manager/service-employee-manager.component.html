@@ -1,0 +1,27 @@
+<section class="empleado-container">
+  <h1>Gestión de Empleados del Servicio</h1>
+
+  <div *ngIf="mensaje" class="mensaje">{{ mensaje }}</div>
+
+  <form (submit)="asignarEmpleados(); $event.preventDefault()">
+    <label for="empleados">IDs de empleados a asignar (separados por coma):</label>
+    <!-- Variable de plantilla #inputIds -->
+    <input 
+      id="empleados"
+      #inputIds
+      type="text"
+      class="form-control"
+      (input)="handleEmployeeIdInput(inputIds.value)"
+      placeholder="Ej: 101, 102, 103"
+    />
+    <button type="submit">Asignar Empleados</button>
+  </form>
+
+  <h2>Empleados Asignados</h2>
+  <ul>
+    <li *ngFor="let emp of assignedEmployees">
+      {{ emp.name }} ({{ emp.email }})
+      <button (click)="desasignarEmpleado(emp.id)">Desasignar</button>
+    </li>
+  </ul>
+</section>

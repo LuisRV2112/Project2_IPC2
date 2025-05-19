@@ -1,0 +1,36 @@
+<section class="admin-servicios-container">
+    <h2>Administrar Servicios</h2>
+  
+    <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+    <p *ngIf="servicios.length === 0">No hay servicios registrados.</p>
+  
+    <ul class="servicios-admin-list">
+      <li *ngFor="let servicio of servicios" class="servicio-admin-card">
+        <div class="info">
+          <h3>{{ servicio.name }}</h3>
+          <p>{{ servicio.description }}</p>
+          <p>Duración: {{ servicio.durationMin }} min | Precio: ${{ servicio.price }}</p>
+          <span class="estado" [class.activo]="servicio.isActive" [class.inactivo]="!servicio.isActive">
+            {{ servicio.isActive ? 'Activo' : 'Inactivo' }}
+          </span>
+        </div>
+  
+        <div class="acciones">
+          <button class="button button-blue" (click)="editar(servicio.id)">
+            Editar
+          </button>
+  
+          <button
+            [ngClass]="servicio.isActive ? 'button-red' : 'button-green'"
+            (click)="cambiarEstado(servicio.id, !servicio.isActive)">
+            {{ servicio.isActive ? 'Desactivar' : 'Activar' }}
+          </button>
+          <!-- Asignar Empleados -->
+          <button class="button button-green" (click)="asignarEmpleados(servicio.id)">
+            Asignar Empleados
+          </button>
+        </div>
+      </li>
+    </ul>
+  </section>
+  

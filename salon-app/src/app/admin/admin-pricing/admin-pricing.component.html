@@ -1,0 +1,43 @@
+<section class="pricing-container">
+  <h1>Gestión de Precios por Día</h1>
+
+  <div *ngIf="mensaje" class="mensaje-exito">{{ mensaje }}</div>
+  <div *ngIf="error" class="mensaje-error">{{ error }}</div>
+
+  <!-- Precio actual -->
+  <div class="precio-actual">
+    <h2>Precio vigente</h2>
+    <p *ngIf="currentPrice !== null">{{ currentPrice | currency }}</p>
+    <p *ngIf="mensaje && currentPrice === null">{{ mensaje }}</p>
+  </div>
+
+  <!-- Nuevo precio -->
+  <div class="formulario-precio">
+    <h2>Agregar nuevo precio</h2>
+    <label class="input-group">
+      Precio por día:
+      <input type="number" [(ngModel)]="newPrice" step="0.01" min="0" />
+    </label>
+    <button (click)="crearPrecio()">Guardar</button>
+  </div>
+
+  <!-- Historial -->
+  <div class="historial">
+    <h2>Historial de Precios</h2>
+    <table *ngIf="history.length > 0">
+      <thead>
+        <tr>
+          <th>Fecha de Vigencia</th>
+          <th>Precio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of history">
+          <td>{{ item.effectiveDate }}</td>
+          <td>{{ item.pricePerDay | currency }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <p *ngIf="history.length === 0">No hay precios registrados</p>
+  </div>
+</section>

@@ -1,0 +1,45 @@
+.section-container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+  }
+  
+  .title {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .input-text {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+  
+  .intereses-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .interes-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f3f3f3;
+    padding: 10px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+  }
+  
+  .estado-mensaje {
+    text-align: center;
+    margin-top: 20px;
+    font-style: italic;
+  }
+  

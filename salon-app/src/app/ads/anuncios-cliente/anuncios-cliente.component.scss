@@ -1,0 +1,32 @@
+.anuncio-slider {
+    display: flex;
+    overflow-x: auto;
+    padding: 0.5rem;
+    background: #f0f0f0;
+    border-bottom: 1px solid #ccc;
+    //max height: 200px;
+    max-height: 200px;
+    .anuncio-item {
+      min-width: 250px;
+      margin-right: 1rem;
+      padding: 0.5rem;
+      background: white;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+      flex-shrink: 0;
+
+    }
+  
+    .anuncio-texto {
+      font-size: 1rem;
+    }
+  
+    .anuncio-imagen img,
+    .anuncio-video video {
+     max-height: 190px;
+      max-width: 100%;
+      height: auto;
+      border-radius: 0.25rem;
+    }
+  }
+  

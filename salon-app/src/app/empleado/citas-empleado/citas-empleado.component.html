@@ -1,0 +1,29 @@
+<section class="section-container">
+    <h1 class="title">Mis Citas</h1>
+  
+    <input type="date" [(ngModel)]="fechaSeleccionada" (change)="cargarCitas()" />
+  
+    <ng-container *ngIf="citas$ | async as citas; else cargando">
+      <ul *ngIf="citas.length > 0; else sinCitas" class="citas-list">
+        <li *ngFor="let cita of citas" class="cita-item">
+          <p><strong>Cliente ID:</strong> {{ cita.clientId }}</p>
+          <p><strong>Fecha:</strong> {{ cita.startTime | date: 'short' }}</p>
+          <p><strong>Estado:</strong> {{ cita.status }}</p>
+          
+          <button (click)="actualizarEstado(cita.id, 'completado')">Marcar como Completada</button>
+          <button (click)="actualizarEstado(cita.id, 'no-show', true)">Cliente No Asistió</button>
+          <!-- Descargar Factura -->
+          <button (click)="descargarFactura(cita.id)">Descargar Factura</button>
+        </li>
+      </ul>
+    </ng-container>
+  
+    <ng-template #cargando>
+      <p class="estado-mensaje">Cargando citas…</p>
+    </ng-template>
+  
+    <ng-template #sinCitas>
+      <p class="estado-mensaje">No tienes citas para esta fecha.</p>
+    </ng-template>
+  </section>
+  

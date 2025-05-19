@@ -1,0 +1,92 @@
+form {
+    max-width: 500px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  }
+  
+  .form-group {
+    margin-bottom: 1.8rem;
+    position: relative;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 0.6rem;
+    color: #2d3436;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  
+  input {
+    width: 100%;
+    padding: 0.9rem;
+    border: 2px solid #ecedee;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  input:focus {
+    outline: none;
+    border-color: #7c4dff;
+    box-shadow: 0 0 0 3px rgba(124, 77, 255, 0.15);
+  }
+  
+  small {
+    display: block;
+    margin-top: 0.4rem;
+    color: #ff5252;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+  
+  button[type="submit"] {
+    background: #7c4dff;
+    color: white;
+    padding: 1rem 2.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: block;
+    width: 100%;
+  }
+  
+  button[type="submit"]:hover {
+    background: #6a40f0;
+    transform: translateY(-1px);
+  }
+  
+  /* Estilos para errores */
+  .form-group.invalid input {
+    border-color: #ff5252;
+  }
+  
+  .form-group.invalid input:focus {
+    box-shadow: 0 0 0 3px rgba(255, 82, 82, 0.15);
+  }
+
+  .link-button {
+    background: none;
+    border: none;
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+  
+  @media (max-width: 640px) {
+    form {
+      margin: 1rem;
+      padding: 1.8rem;
+    }
+    
+    input {
+      padding: 0.8rem;
+    }
+  }

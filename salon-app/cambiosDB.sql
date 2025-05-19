@@ -1,0 +1,1 @@
+alter table client_profiles add name varchar(100);

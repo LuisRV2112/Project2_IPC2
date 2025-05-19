@@ -1,0 +1,26 @@
+<div class="container">
+  <h2 class="title">Reservar cita</h2>
+
+  <form [formGroup]="reservaForm" (ngSubmit)="reservar()">
+
+    <label class="form-label">Selecciona una fecha:</label>
+    <input type="date" formControlName="fecha" class="input" (change)="cargarHorarios()">
+
+    <label class="form-label mt-4">Selecciona un trabajador:</label>
+    <select formControlName="trabajadorId" class="select" (change)="cargarHorarios()">
+      <option value="" disabled>-- Elegir trabajador --</option>
+      <option *ngFor="let t of trabajadores" [value]="t.id">{{ t.name }}</option>
+    </select>
+
+    <label class="form-label mt-4" *ngIf="horarios.length">Selecciona un horario:</label>
+    <select *ngIf="horarios.length" formControlName="horario" class="select">
+      <option value="" disabled>-- Elegir horario --</option>
+      <option *ngFor="let h of horarios" [value]="h">{{ h }}</option>
+    </select>
+
+    <button class="button mt-6" type="submit" [disabled]="reservaForm.invalid">
+      Confirmar reserva
+    </button>
+
+  </form>
+</div>

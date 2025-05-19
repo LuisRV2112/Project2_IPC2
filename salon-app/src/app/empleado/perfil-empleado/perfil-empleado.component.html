@@ -1,0 +1,32 @@
+<section class="perfil-container" *ngIf="perfil">
+  <img [src]="perfil.photoUrl" alt="Foto de perfil" class="foto-perfil">
+
+  <form (ngSubmit)="guardarCambios()" #form="ngForm" class="perfil-form">
+
+    <div class="form-group">
+      <label for="name" class="form-label">Nombre</label>
+      <input id="name" [(ngModel)]="perfil.name" name="name" type="text" 
+             class="form-input" required />
+    </div>
+
+    <div class="form-group">
+      <label for="description" class="form-label">Descripción Profesional</label>
+      <textarea id="description" [(ngModel)]="perfil.description" name="description" 
+                class="form-textarea" rows="4"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="hobbies" class="form-label">Hobbies</label>
+      <textarea id="hobbies" [(ngModel)]="perfil.hobbies" name="hobbies" 
+                class="form-textarea" rows="3"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="photoUrl" class="form-label">URL de Foto de Perfil</label>
+      <input id="photoUrl" [(ngModel)]="perfil.photoUrl" name="photoUrl" type="text" 
+             class="form-input" />
+    </div>
+
+    <button type="submit" class="submit-btn">Guardar Cambios</button>
+  </form>
+</section>

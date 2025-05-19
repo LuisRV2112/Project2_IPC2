@@ -1,0 +1,20 @@
+<div class="anuncio-slider" *ngIf="anuncios.length > 0">
+  <div class="anuncio-item" *ngFor="let ad of anuncios">
+    <!-- Texto -->
+    <div *ngIf="ad.type === 'text'" class="anuncio-texto">
+      <strong>{{ ad.category }}</strong>: {{ ad.contentUrl }}
+    </div>
+
+    <!-- Imagen -->
+    <div *ngIf="ad.type === 'image'" class="anuncio-imagen">
+      <img [src]="ad.contentUrl" alt="Anuncio de {{ ad.category }}">
+    </div>
+
+    <!-- Video (YouTube o directo) -->
+    <iframe *ngIf="esYoutube(ad.contentUrl)" 
+        [src]="urlYoutubeEmbed(ad.contentUrl)" 
+        width="300" height="180" frameborder="0" allowfullscreen>
+    </iframe>
+
+  </div>
+</div>

@@ -1,0 +1,108 @@
+<section class="section-container">
+    <h1 class="section-title">Gestión de Usuarios</h1>
+  
+    <!-- Botón de regreso -->
+    <button class="btn btn-gray" (click)="regresarInicio()">
+      ← Regresar
+    </button>
+  
+    <!-- Formulario de creación -->
+    <form [formGroup]="usuarioForm" (ngSubmit)="crearUsuario()" class="user-form">
+<!--       <div class="form-group">
+        <label>Nombre</label>
+        <input formControlName="name" type="text" class="form-input" />
+        <div *ngIf="usuarioForm.get('name')?.invalid && usuarioForm.get('name')?.touched" class="error-message">
+          Nombre es requerido.
+        </div>
+      </div> -->
+  
+      <div class="form-group">
+        <label>Email</label>
+        <input formControlName="email" type="email" class="form-input" />
+        <div *ngIf="usuarioForm.get('email')?.invalid && usuarioForm.get('email')?.touched" class="error-message">
+          Email válido es requerido.
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label>Contraseña</label>
+        <input formControlName="password" type="password" class="form-input" />
+        <div *ngIf="usuarioForm.get('password')?.invalid && usuarioForm.get('password')?.touched" class="error-message">
+          Mínimo 6 caracteres.
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label>Rol</label>
+        <!--  -->
+        <select formControlName="roleId" class="form-input">
+          <option value="">Seleccione un rol</option>
+          <option value="2">Marketing</option>
+          <option value="3">Encargado de servicios</option>
+          <option value="4">Empleado</option>
+        </select>
+        <div *ngIf="usuarioForm.get('roleId')?.invalid && usuarioForm.get('roleId')?.touched" class="error-message">
+          Seleccione un rol.
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label>DPI</label>
+        <input formControlName="dpi" type="text" class="form-input" />
+        <div *ngIf="usuarioForm.get('dpi')?.invalid && usuarioForm.get('dpi')?.touched" class="error-message">
+          DPI es requerido.
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label>Teléfono</label>
+        <input formControlName="phone" type="text" class="form-input" />
+        <div *ngIf="usuarioForm.get('phone')?.invalid && usuarioForm.get('phone')?.touched" class="error-message">
+          Teléfono es requerido.
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label>Dirección</label>
+        <input formControlName="address" type="text" class="form-input" />
+        <div *ngIf="usuarioForm.get('address')?.invalid && usuarioForm.get('address')?.touched" class="error-message">
+          Dirección es requerida.
+        </div>
+      </div>
+  
+      <button 
+        type="submit" 
+        [disabled]="cargando" 
+        class="btn btn-green">
+        {{ cargando ? 'Guardando...' : 'Crear Usuario' }}
+      </button>
+    </form>
+  
+    <!-- Tabla de usuarios -->
+    <div class="table-container">
+      <table class="user-table">
+        <thead>
+          <tr class="table-header">
+            <th class="table-cell">Nombre</th>
+            <th class="table-cell">Email</th>
+            <th class="table-cell">Rol</th>
+            <th class="table-cell">Estado</th>
+            <th class="table-cell text-center">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of usuarios" class="table-row">
+            <td class="table-cell">{{ user.name || 'No asignado' }}</td>
+            <td class="table-cell">{{ user.email }}</td>
+            <td class="table-cell">{{ roleMap[user.roleId ?? 0] || 'Desconocido' }}</td>
+            <td class="table-cell">{{ user.active ? 'Activo' : 'Inactivo' }}</td>
+            <td class="table-cell text-center">
+              <button (click)="darDeBaja(user.id)" class="action-btn">
+                Dar de baja
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>

@@ -1,0 +1,35 @@
+<section class="section-container">
+  <h1 class="title">Mis Citas</h1>
+
+  <div *ngIf="mensaje" class="alerta">{{ mensaje }}</div>
+
+  <ng-container *ngIf="citas$ | async as citas; else cargando">
+    <ul *ngIf="citas.length > 0; else sinCitas" class="citas-list">
+      <li *ngFor="let cita of citas" class="cita-item">
+        <p><strong>Empleado:</strong> {{ cita.employeeId }}</p>
+        <p><strong>Servicio:</strong> {{ cita.serviceId }}</p>
+        <p><strong>Inicio:</strong> {{ cita.startTime | date: 'medium' }}</p>
+        <p><strong>Fin:</strong> {{ cita.endTime | date: 'medium' }}</p>
+
+        <button *ngIf="cita.status !== 'COMPLETADA' && cita.status !== 'cancelada'" (click)="cancelarCita(cita.id)">
+          Cancelar
+        </button>
+         <p *ngIf="cita.status === 'cancelada'" class="estado-cancelada">
+          Cita cancelada
+        </p>
+        <p *ngIf="cita.status === 'completada'" class="estado-completada">
+          Cita completada
+        </p>
+
+      </li>
+    </ul>
+  </ng-container>
+
+  <ng-template #cargando>
+    <p class="estado-mensaje">Cargando citas…</p>
+  </ng-template>
+
+  <ng-template #sinCitas>
+    <p class="estado-mensaje">No tienes citas registradas.</p>
+  </ng-template>
+</section>

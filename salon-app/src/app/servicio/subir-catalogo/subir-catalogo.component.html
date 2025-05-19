@@ -1,0 +1,9 @@
+<section class="subir-catalogo">
+    <h3>Subir Catálogo PDF</h3>
+    <input type="file" accept="application/pdf" (change)="seleccionarArchivo($event)" />
+    <button (click)="subirCatalogo()" [disabled]="!archivoSeleccionado">Subir</button>
+  
+    <p class="success" *ngIf="mensaje">{{ mensaje }}</p>
+    <p class="error" *ngIf="error">{{ error }}</p>
+  </section>
+  
