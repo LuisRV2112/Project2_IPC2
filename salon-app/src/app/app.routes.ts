@@ -15,6 +15,7 @@ import { AdminReportesComponent } from './admin/admin-reportes/admin-reportes.co
 import { AuthGuard } from './auth/auth.guard';
 import { AdminPricingComponent } from './admin/admin-pricing/admin-pricing.component';
 import { ServiceEmployeeManagerComponent } from './servicio/service-employee-manager/service-employee-manager.component';
+import { MarketingReportComponent } from './marketing/marketing-report/marketing-report.component';
 
 export const routes: Routes = [
     { path: 'register', component: RegisterComponent, canActivate: [AuthGuard] },
@@ -41,6 +42,9 @@ export const routes: Routes = [
   { path: 'servicio/nuevo', component: FormServicioComponent, canActivate: [AuthGuard] },
   { path: 'servicio/editar/:id', component: FormServicioComponent, canActivate: [AuthGuard] },
   { path: 'servicio/empleados/:serviceId', component: ServiceEmployeeManagerComponent, canActivate: [AuthGuard] },
+
+  //Marketing
+  { path: 'marketing/reportes', component: MarketingReportComponent, canActivate: [AuthGuard] },
 
   { path: '**', redirectTo: 'login' },
 ];

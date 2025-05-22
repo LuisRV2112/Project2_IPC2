@@ -184,21 +184,15 @@ public class AdminReportGenerator {
     }
 
     private String getEmployeeEarningsQuery(boolean filtered) {
-        return  "SELECT " +
-                "  u.email AS detalle, " +
-                "  SUM(i.total) AS total " +
-                "FROM appointments a " +
-                "JOIN users u       ON a.employee_id    = u.id " +
-                "JOIN invoices i    ON i.appointment_id = a.id " +
-                "WHERE a.status = 'completado' " +
-                "  AND ($P{start_date} IS NULL OR a.start_time >= $P{start_date}) " +
-                "  AND ($P{end_date}   IS NULL OR a.start_time <= $P{end_date}) " +
-                (filtered 
-                    ? "  AND u.id = $P{id_filter} " 
-                    : ""
-                ) +
-                "GROUP BY u.email " +
-                "ORDER BY u.email";
+        return "SELECT CONCAT(u.email, ' - ', a.start_time) AS detalle, i.total AS total " +
+               "FROM appointments a " +
+               "JOIN users u ON a.employee_id = u.id " +
+               "JOIN invoices i ON i.appointment_id = a.id " +
+               "WHERE a.status = 'completado' " +
+               "AND ($P{start_date} IS NULL OR a.start_time >= $P{start_date}) " +
+               "AND ($P{end_date} IS NULL OR a.start_time <= $P{end_date}) " +
+               (filtered ? "AND u.id = $P{id_filter} " : "") +
+               "ORDER BY a.start_time";
     }
 
     private String getTopAttendedClientsQuery(boolean filtered) {

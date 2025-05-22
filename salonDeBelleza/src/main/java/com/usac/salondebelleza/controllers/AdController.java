@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonObject;
 import dao.AdDAO;
+import dao.AdImpressionDAO;
 import dao.UserInterestDAO;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -94,10 +95,11 @@ private final Gson gson = new GsonBuilder()
                 response.sendError(HttpServletResponse.SC_FORBIDDEN, "Acceso denegado");
                 return;
             }
+
             List<Ad> ads = new ArrayList<>();
             if(AuthUtils.checkRole(request, Role.MARKETING)){
                 ads = AdDAO.getActiveAds();
-            }else{
+            } else {
                 HttpSession session = request.getSession();
                 User user = (User) session.getAttribute("user");
                 int userId = user.getId();
@@ -105,11 +107,19 @@ private final Gson gson = new GsonBuilder()
                 List<String> interests = UserInterestDAO.getUserInterests(userId);
 
                 for (String interest : interests) {
-                    ads.addAll(AdDAO.getActiveAdsByCategory(interest));
+                    List<Ad> categoryAds = AdDAO.getActiveAdsByCategory(interest);
+                    ads.addAll(categoryAds);
+
+                    // Registrar impresión para cada anuncio mostrado al cliente
+                    for (Ad ad : categoryAds) {
+                        AdImpressionDAO.recordImpression(
+                            ad.getId(), 
+                            request.getRequestURL().toString(),
+                            userId
+                        );
+                    }
                 }
             }
-
-
 
             responseData.put("data", ads);
             response.getWriter().write(gson.toJson(responseData));

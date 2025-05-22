@@ -1,0 +1,39 @@
+.report-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.report-container h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.report-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.report-container label {
+  margin-top: 10px;
+}
+
+.report-container input,
+.report-container select,
+.report-container button {
+  margin-top: 5px;
+  padding: 8px;
+  font-size: 16px;
+}
+
+.report-container button {
+  margin-top: 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.report-container button:hover {
+  background-color: #0056b3;
+}

@@ -67,39 +67,41 @@ public class MarketingReportGenerator {
         JasperExportManager.exportReportToPdfStream(print, out);
     }
 
-    // === QUERIES ===
+    // === QUERIES ACTUALIZADAS ===
 
     private String getTopAdsQuery() {
-        return "SELECT CONCAT(a.name, ' - ', v.url) AS detalle, COUNT(*) AS total " +
-               "FROM ad_views v " +
-               "JOIN ads a ON v.ad_id = a.id " +
-               "WHERE ($P{start_date} IS NULL OR v.viewed_at >= $P{start_date}) " +
-               "AND ($P{end_date} IS NULL OR v.viewed_at <= $P{end_date}) " +
-               "GROUP BY a.id, v.url " +
+        return "SELECT CONCAT(a.type, ' - ', a.category) AS detalle, COUNT(*) AS total " +
+               "FROM ad_impressions i " +
+               "JOIN advertisements a ON i.ad_id = a.id " +
+               "WHERE a.is_active = TRUE " +
+               "AND ($P{start_date} IS NULL OR i.shown_at >= $P{start_date}) " +
+               "AND ($P{end_date} IS NULL OR i.shown_at <= $P{end_date}) " +
+               "GROUP BY a.id, a.type, a.category " +
                "ORDER BY total DESC LIMIT 5";
     }
 
     private String getLeastAdsQuery() {
-        return "SELECT CONCAT(a.name, ' - ', v.url) AS detalle, COUNT(*) AS total " +
-               "FROM ad_views v " +
-               "JOIN ads a ON v.ad_id = a.id " +
-               "WHERE ($P{start_date} IS NULL OR v.viewed_at >= $P{start_date}) " +
-               "AND ($P{end_date} IS NULL OR v.viewed_at <= $P{end_date}) " +
-               "GROUP BY a.id, v.url " +
+        return "SELECT CONCAT(a.type, ' - ', a.category) AS detalle, COUNT(*) AS total " +
+               "FROM ad_impressions i " +
+               "JOIN advertisements a ON i.ad_id = a.id " +
+               "WHERE a.is_active = TRUE " +
+               "AND ($P{start_date} IS NULL OR i.shown_at >= $P{start_date}) " +
+               "AND ($P{end_date} IS NULL OR i.shown_at <= $P{end_date}) " +
+               "GROUP BY a.id, a.type, a.category " +
                "ORDER BY total ASC LIMIT 5";
     }
 
     private String getAdUsageHistoryQuery() {
-        return "SELECT CONCAT(a.name, ' - Tipo: ', a.type) AS detalle, COUNT(*) AS total " +
-               "FROM ad_usages u " +
-               "JOIN ads a ON u.ad_id = a.id " +
-               "WHERE ($P{start_date} IS NULL OR u.used_at >= $P{start_date}) " +
-               "AND ($P{end_date} IS NULL OR u.used_at <= $P{end_date}) " +
-               "GROUP BY a.id, a.type " +
-               "ORDER BY total DESC";
+        return "SELECT CONCAT(a.type, ' - Categoría: ', a.category) AS detalle, " +
+               "a.purchase_count AS total " +
+               "FROM advertisements a " +
+               "WHERE a.is_active = TRUE " +
+               "AND ($P{start_date} IS NULL OR a.start_date >= $P{start_date}) " +
+               "AND ($P{end_date} IS NULL OR a.end_date <= $P{end_date}) " +
+               "ORDER BY a.purchase_count DESC";
     }
 
-    // === UTILIDADES ===
+    // === MÉTODOS UTILITARIOS (sin cambios) ===
 
     private void addField(JasperDesign design, String name, Class<?> clazz) throws JRException {
         JRDesignField field = new JRDesignField();

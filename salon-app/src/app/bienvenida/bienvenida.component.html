@@ -94,6 +94,13 @@
       <ng-template #vistaMarketing>
         <ng-container *ngIf="isMarketing; else vistaUsuario">
           <app-ads></app-ads>
+          <div class="admin-card">
+            <h2 class="card-title">Reportes de Anuncios</h2>
+            <button class="button button-blue" (click)="navegar('/marketing/reportes')">
+              Ir a Reportes
+            </button>
+          </div>
+
         </ng-container>
         <ng-template #vistaUsuario>
           <!-- Vista para Usuario normal -->

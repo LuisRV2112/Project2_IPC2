@@ -1,0 +1,20 @@
+<section class="report-container">
+  <h1>Reportes de Marketing</h1>
+
+  <form (ngSubmit)="generarReporte()">
+    <label for="tipoReporte">Tipo de Reporte:</label>
+    <select id="tipoReporte" [(ngModel)]="tipoReporte" name="tipoReporte" required>
+      <option value="top-ads">Top 5 Anuncios Más Mostrados</option>
+      <option value="least-ads">Top 5 Anuncios Menos Mostrados</option>
+      <option value="ad-usage-history">Historial de Uso de Anuncios</option>
+    </select>
+
+    <label for="fechaInicio">Fecha de Inicio:</label>
+    <input type="date" id="fechaInicio" [(ngModel)]="fechaInicio" name="fechaInicio">
+
+    <label for="fechaFin">Fecha de Fin:</label>
+    <input type="date" id="fechaFin" [(ngModel)]="fechaFin" name="fechaFin">
+
+    <button type="submit">Descargar Reporte</button>
+  </form>
+</section>

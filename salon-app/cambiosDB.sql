@@ -1,1 +1,3 @@
-alter table client_profiles add name varchar(100);
+ALTER TABLE ad_impressions 
+ADD COLUMN user_id INT NULL,
+ADD CONSTRAINT fk_impression_user FOREIGN KEY (user_id) REFERENCES users(id);
